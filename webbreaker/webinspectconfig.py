@@ -230,10 +230,14 @@ class WebInspectConfig(object):
                 options['upload_policy'] = options['scan_policy']
 
         # Determine the targets specified in a settings file
-        if options['upload_settings']:
-            targets = self.__getScanTargets__(options['upload_settings'])
-        else:
-            targets = None
+        try:
+            if options['upload_settings']:
+                targets = self.__getScanTargets__(options['upload_settings'])
+            else:
+                targets = None
+        except NameError as e:
+            Logger.app.error("The setting file does not exist: {}".format(e))
+
         # Unless explicitly stated --allowed_hosts by default will use all values from --start_urls
         if not options['allowed_hosts']:
             options['allowed_hosts'] = options['start_urls']
