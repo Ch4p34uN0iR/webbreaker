@@ -173,7 +173,7 @@ def scan(config, **kwargs):
     # The webinspect client is our point of interaction with the webinspect server farm
     try:
         webinspect_client = WebinspectClient(webinspect_settings)
-    except (UnboundLocalError, EnvironmentError, NameError) as e:
+    except (UnboundLocalError, EnvironmentError, NameError, TypeError) as e:
         Logger.app.critical("Incorrect WebInspect configurations found!! {}".format(str(e)))
         exit(1)
 

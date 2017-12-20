@@ -22,7 +22,7 @@ class WebInspectJitScheduler(object):
             if endpoint:
                 Logger.app.info("WebBreaker has selected: {} for your WebInspect scan.".format(endpoint[0]))
             else:
-                Logger.app.error("No available WebInspect servers are available, due to misconfigation or"
+                Logger.app.error("No available WebInspect servers are available, due to misconfigation or "
                                  "all scan engines are fully utilized!")
             return endpoint[0]
         except Exception as e:  # Ugly. Not sure what to expect for problems, so Pokemon handling, catch'em all :(
