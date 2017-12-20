@@ -129,6 +129,7 @@ class WebInspectConfig(object):
         options['upload_policy'] = self.trim_ext(options['upload_policy'])
         # Trim .policy
         options['scan_policy'] = self.trim_ext(options['scan_policy'])
+
         # Trim .xml
         options['upload_settings'] = self.trim_ext(options['upload_settings'])
 
@@ -213,9 +214,7 @@ class WebInspectConfig(object):
         if options['upload_policy']:
             if os.path.isfile(options['upload_policy'] + '.policy'):
                 options['upload_policy'] = options['upload_policy'] + '.policy'
-            elif os.path.isfile(options['upload_policy']):
-                options['upload_policy'] = options['upload_policy']
-            else:
+            if not os.path.isfile(options['upload_policy']):
                 options['upload_policy'] = os.path.join(webinspect_dir,
                                                         'policies',
                                                         options['upload_policy'] + '.policy')
@@ -223,13 +222,12 @@ class WebInspectConfig(object):
         elif options['scan_policy']:
             if os.path.isfile(options['scan_policy'] + '.policy'):
                 options['scan_policy'] = options['scan_policy'] + '.policy'
-            elif os.path.isfile(options['upload_policy']):
-                options['scan_policy'] = options['scan_policy']
-
-            else:
+            if not os.path.isfile(options['scan_policy']):
                 options['upload_policy'] = os.path.join(webinspect_dir,
                                                         'policies',
                                                         options['scan_policy'] + '.policy')
+            else:
+                options['upload_policy'] = options['scan_policy']
 
         # Determine the targets specified in a settings file
         if options['upload_settings']:
