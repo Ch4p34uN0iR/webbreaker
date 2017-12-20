@@ -232,7 +232,7 @@ class WebInspectConfig(object):
                                                             'policies',
                                                             options['scan_policy'] + '.policy')
         except TypeError as e:
-            Logger.app.error("There was an error with the policy provided with your --scan_policy option! ".format(e))
+            Logger.app.error("There was an error with the policy provided from --scan_policy option! ".format(e))
 
         # Determine the targets specified in a settings file
         if options['upload_settings']:
