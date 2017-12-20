@@ -258,7 +258,7 @@ class WebInspectConfig(object):
             webinspect_dict['webinspect_scan_targets'] = targets
             webinspect_dict['webinspect_workflow_macros'] = options['workflow_macros']
             webinspect_dict['webinspect_allowed_hosts'] = options['allowed_hosts']
-            webinspect_dict['webinspect_scan_size'] = options['size'] if options['size'] else self.default_size
+            webinspect_dict['webinspect_scan_size'] = 'size_' + options['size'] if options['size'] else self.default_size
             webinspect_dict['fortify_user'] = options['fortify_user']
 
         except argparse.ArgumentError as e:
