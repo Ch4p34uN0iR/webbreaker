@@ -187,7 +187,7 @@ def scan(config, **kwargs):
                    y[0] == str(webinspect_client.scan_policy).lower()]
             policy_guid = webinspect_config.mapped_policies[idx[0]][1]
             Logger.app.info(
-                "Provided scan_policy {} listed as builtin policyID {}".format(webinspect_client.scan_policy,
+                "scan_policy {} with policyID {} has been selected.".format(webinspect_client.scan_policy,
                                                                                policy_guid))
             Logger.app.info("Checking to make sure a policy with that ID exists in WebInspect.")
             if not webinspect_client.policy_exists(policy_guid):
