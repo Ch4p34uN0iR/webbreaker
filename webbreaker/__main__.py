@@ -229,8 +229,9 @@ def scan(config, **kwargs):
         webinspect_client.upload_policy()
 
     Logger.app.info("Launching a scan")
+    
     # ... And launch a scan.
-    try:
+        try:
         scan_id = webinspect_client.create_scan()
         if scan_id:
             global handle_scan_event
@@ -252,13 +253,16 @@ def scan(config, **kwargs):
         webinspect_client.export_scan_results(scan_id, 'fpr')
         webinspect_client.export_scan_results(scan_id, 'xml')
 
+    except NameError:
+        Logger.app.error("See the WebInspect server scan log --> {}, typically the application to be scanned is"
+                     "unavailable.".format(webinspect_settings['webinspect_url']))
+    
     except (requests.exceptions.ConnectionError, requests.exceptions.HTTPError) as e:
         Logger.app.error(
             "Unable to connect to WebInspect {0}, see also: {1}".format(webinspect_settings['webinspect_url'], e))
 
     handle_scan_event('scan_end')
     Logger.app.info("Webbreaker WebInspect has completed.")
-
 
 @webinspect.command(name='list',
                     short_help="List WebInspect scans",
