@@ -124,7 +124,7 @@ class FortifyClient(object):
                 raise ValueError("Failed to commit new project version")
                 # Logger.app.debug("Created new project version id {0}".format(project_version_id))
         except (AttributeError, UnboundLocalError) as e:
-            Logger.app.critical("Exception trying to create project version. {0}".format(e))
+            Logger.app.critical("Exception creating Fortify SSC project version. {0}".format(e))
 
         return project_version_id
 
@@ -198,7 +198,7 @@ class FortifyClient(object):
                 Logger.app.error("Error uploading {0}.{1}!!!".format(self.fortify_version, self.extension))
                 
         except UnboundLocalError as e:
-            Logger.app.critical("Exception trying to create SSC project version: {}".format(e.message))
+            Logger.app.critical("Error uploading scan to Fortify SSC: {}".format(e.message))
             
         return response
 
