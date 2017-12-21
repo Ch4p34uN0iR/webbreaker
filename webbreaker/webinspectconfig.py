@@ -297,6 +297,7 @@ class WebInspectConfig(object):
             Logger.app.error("Uh oh something is wrong with your WebInspect configurations!!\nError: {}".format(e))
         Logger.app.debug("Completed webinspect config fetch")
 
+    # TODO: Move to helper class
     def trim_ext(self, file):
         if type(file) is list:
             result = []

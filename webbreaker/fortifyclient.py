@@ -282,14 +282,19 @@ class FortifyClient(object):
 
         return self.ssc_server + '/ssc/html/ssc/index.jsp#!/version/' + str(version_id)
 
-    def trim_ext(self, file, list=False):
-        try:
-            if list:
-                result = []
-                for f in file:
+    # TODO: Move to helper class
+    def trim_ext(self, file):
+        if type(file) is list:
+            result = []
+            for f in file:
+                if os.path.isfile(f):
+                    result.append(os.path.splitext(f)[0])
+                else:
                     result.append(os.path.splitext(os.path.basename(f))[0])
-                return result
-            else:
-                return os.path.splitext(os.path.basename(file))[0]
-        except (TypeError, AttributeError):
+            return result
+        elif file is None:
             return file
+        else:
+            if os.path.isfile(file):
+                return os.path.splitext(file)[0]
+            return os.path.splitext(os.path.basename(file))[0]
