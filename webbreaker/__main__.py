@@ -245,7 +245,7 @@ def scan(config, **kwargs):
             Logger.app.info("Scan status has changed to {0}.".format(status))
 
             if status.lower() != 'complete':  # case insensitive comparison is tricky. this should be good enough for now
-                TODO: Add scanner log endpoint
+            TODO: Add scanner log endpoint
                 Logger.app.error("See the WebInspect server scan log errors, typically the application to be scanned is unavailable.")
                 handle_scan_event('scan_end')
                 exit(1)
