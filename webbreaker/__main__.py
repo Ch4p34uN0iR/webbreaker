@@ -737,7 +737,7 @@ def upload(config, fortify_user, fortify_password, application, version, scan_na
             # The given application doesn't exist
             Logger.console.critical("Fortify Application {} does not exist. Unable to upload scan.".format(application))
 
-    except (IOError, ValueError) as e:
+    except (IOError, ValueError, UnboundLocalError) as e:
         Logger.console.critical("Unable to complete command 'fortify upload'\n Error: {}".format(e))
 
 
