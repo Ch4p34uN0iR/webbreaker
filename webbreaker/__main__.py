@@ -165,7 +165,7 @@ def scan(config, **kwargs):
     # ...and settings...
     try:
         webinspect_settings = webinspect_config.parse_webinspect_options(ops)
-    except (AttributeError, UnboundLocalError):
+    except (AttributeError, UnboundLocalError, IndexError):
         Logger.app.error("Your configuration or settings are incorrect see log {}: ERROR: {}!!!".format(Logger.app_logfile))
         exit(1)
     # OK, we're ready to actually do something now
